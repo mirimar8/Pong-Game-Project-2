@@ -1,11 +1,13 @@
 import { SVG_NS } from '../settings';
+import audioFile from '../../public/sounds/pong-01.wav';
 
 export default class Ball {
   constructor(boardWidth, boardHeight, radius) {
       this.boardWidth = boardWidth
       this.boardHeight = boardHeight;
       this.radius = radius;
-      this.direction = 1
+      this.direction = 1;
+      this.ping = new Audio(audioFile);
       this.reset();
   }
 
@@ -52,6 +54,7 @@ export default class Ball {
             this.y >= p2.top &&
             this.y <= p2.bottom) {
                 this.vx = this.vx * -1;
+                this.ping.play();
         }
     } else {
             // check for hit with player1
@@ -60,6 +63,8 @@ export default class Ball {
             this.y >= p1.top &&
             this.y <= p1.bottom) {
                 this.vx = this.vx * -1;
+                this.ping.play();
+
         }
 
     }
