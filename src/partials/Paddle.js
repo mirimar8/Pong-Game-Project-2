@@ -7,6 +7,7 @@ export default class Paddle {
       this.paddleHeight = paddleHeight;
       this.x = initialX;
       this.y = initialY;
+      this.oldY = initialY;
       this.score = 0;
       this.speed = SPEED;
       document.addEventListener("keydown", event => {
@@ -29,6 +30,11 @@ export default class Paddle {
 
   getScore() {
       return this.score;
+  }
+
+  resetScore() {
+    this.score  = 0;
+    this.y = this.oldY;
   }
 
   moveUp() {
