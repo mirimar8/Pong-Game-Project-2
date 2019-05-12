@@ -24,6 +24,10 @@ export default class Ball {
 
   }
 
+  ballSize(size) {
+      this.radius = size;
+  }
+
   wallCollision() {
       const hitsTop = this.y - this.radius <= 0;
       const hitsBottom = this.y + this.radius >= this.boardHeight;

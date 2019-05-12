@@ -12,7 +12,7 @@ export default class Game {
     this.width = width;
     this.height = height;
     this.paused = false;
-    this.numGamesPlayed = 0;
+    this.numGamesPlayed = 1;
     this.gameElement = document.getElementById(this.element);
     this.board = new Board(this.width, this.height);
     const boardMid = (this.height - PADDLE_HEIGHT) / 2;
@@ -34,15 +34,14 @@ export default class Game {
  
   
   declareWinner(score1, score2) {
-    if (score1 === 3) {
-      // text.textContent = "Player 1 WINS! Press space to restart";
+    if (score1 === 5) {
       alert("Player 1 WINS! Press space to restart");
       this.numGamesPlayed++;
       this.paused = true;
       this.paddle1.resetScore();
       this.paddle2.resetScore();
       this.ball.reset();
-    } else if (score2 === 3) {
+    } else if (score2 === 5) {
       alert("Player 2 WINS! Press space to restart");
       this.numGamesPlayed++;
       this.paused = true;
@@ -51,9 +50,18 @@ export default class Game {
       this.ball.reset();
   }
  }
+
+ setBallSize(score1, score2) {
+   if (score1 === 5 || score2 === 5) {
+    this.ball.ballSize(4);
+    this.ball2.ballSize(4);
+    this.ball3.ballSize(4);
+   }
+ }
   
 
   render() {
+    this.setBallSize(this.paddle1.getScore(), this.paddle2.getScore());
     this.declareWinner(this.paddle1.getScore(), this.paddle2.getScore());
     if (this.paused === false) {
       this.gameElement.innerHTML = '';
@@ -66,10 +74,10 @@ export default class Game {
       this.paddle1.render(svg);
       this.paddle2.render(svg);
       this.ball.render(svg, this.paddle1, this.paddle2);
-      if (this.numGamesPlayed > 0 ) {
+      if (this.numGamesPlayed >= 2 ) {
         this.ball2.render(svg, this.paddle1, this.paddle2);
       }
-      if (this.numGamesPlayed > 1) {
+      if (this.numGamesPlayed >= 3) {
         this.ball3.render(svg, this.paddle1, this.paddle2);
       }
   
