@@ -1,12 +1,13 @@
-import { SVG_NS, TEXT_SIZE } from '../settings';
+import { SVG_NS, TEXT_SIZE } from "../settings";
 
 export default class Score {
-  constructor( xPosition, yPosition) {
-      this.x = xPosition;
-      this.y = yPosition;
-    }
+  constructor(xPosition, yPosition) {
+    this.x = xPosition;
+    this.y = yPosition;
+  }
+
   render(svg, score) {
-    let text = document.createElementNS(SVG_NS, 'text');
+    let text = document.createElementNS(SVG_NS, "text");
     text.setAttributeNS(null, "fill", "white");
     text.setAttributeNS(null, "font-size", TEXT_SIZE);
     text.setAttributeNS(null, "font-family", "'Silkscreen Web', monotype");
@@ -14,6 +15,5 @@ export default class Score {
     text.setAttributeNS(null, "y", this.y);
     text.textContent = score;
     svg.appendChild(text);
-
   }
 }
