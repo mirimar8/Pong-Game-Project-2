@@ -77,7 +77,6 @@ export default class Ball {
      
   }
 
-  
 
   render(svg, player1, player2) {
     let circle = document.createElementNS(SVG_NS, 'circle');

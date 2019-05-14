@@ -35,14 +35,14 @@ export default class Game {
   
   declareWinner(score1, score2) {
     if (score1 === 5) {
-      alert("Player 1 WINS! Press space to restart");
+      this.gameElement.innerHTML = "Player 1 WINS! Press space to restart";
       this.numGamesPlayed++;
       this.paused = true;
       this.paddle1.resetScore();
       this.paddle2.resetScore();
       this.ball.reset();
     } else if (score2 === 5) {
-      alert("Player 2 WINS! Press space to restart");
+      this.gameElement.innerHTML = "Player 2 WINS! Press space to restart";
       this.numGamesPlayed++;
       this.paused = true;
       this.paddle1.resetScore();
@@ -53,12 +53,12 @@ export default class Game {
 
  setBallSize(score1, score2) {
    if (score1 === 5 || score2 === 5) {
-    this.ball.ballSize(4);
-    this.ball2.ballSize(4);
-    this.ball3.ballSize(4);
-   }
+    this.ball.ballSize(6);
+    this.ball2.ballSize(6);
+    this.ball3.ballSize(6);
+   } 
  }
-  
+ 
 
   render() {
     this.setBallSize(this.paddle1.getScore(), this.paddle2.getScore());
@@ -79,6 +79,9 @@ export default class Game {
       }
       if (this.numGamesPlayed >= 3) {
         this.ball3.render(svg, this.paddle1, this.paddle2);
+        this.ball.ballSize(4);
+        this.ball2.ballSize(4);
+        this.ball3.ballSize(4);
       }
   
       this.score1.render(svg, this.paddle1.getScore());
