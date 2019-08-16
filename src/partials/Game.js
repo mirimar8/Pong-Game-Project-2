@@ -4,7 +4,8 @@ import {
   PADDLE_HEIGHT,
   BOARD_GAP,
   KEYS,
-  RADIUS
+  RADIUS,
+  SPEED
 } from "../settings";
 import Board from "./Board";
 import Paddle from "./Paddle";
@@ -18,6 +19,7 @@ export default class Game {
     this.height = height;
     this.paused = false;
     this.numGamesPlayed = 1;
+    this.playerName = document.getElementById('player-name');
     this.gameElement = document.getElementById(this.element);
     this.board = new Board(this.width, this.height);
     const boardMid = (this.height - PADDLE_HEIGHT) / 2;
@@ -49,27 +51,27 @@ export default class Game {
     document.addEventListener("keydown", event => {
       if (event.key === KEYS.pause) {
         this.paused = !this.paused;
+        this.playerName.innerText = '';
       }
     });
   }
 
   declareWinner(score1, score2) {
-    if (score1 === 5) {
-      this.gameElement.innerHTML = "Player 1 wins! Press space to restart";
+    if (score1 === 1) {
+      this.playerName.innerText = 'Player 1 wins! Press space to restart.';
       this.numGamesPlayed++;
       this.paused = true;
       this.paddle1.resetScore();
       this.paddle2.resetScore();
       this.ball.reset();
 
-    } else if (score2 === 5) {
-      this.gameElement.innerHTML = "Player 2 wins! Press space to restart";
+    } else if (score2 === 1) {
+      this.playerName.innerText = 'Player 2 wins! Press space to restart.';
       this.numGamesPlayed++;
       this.paused = true;
       this.paddle1.resetScore();
       this.paddle2.resetScore();
       this.ball.reset();
-
     }
   }
 
@@ -81,13 +83,13 @@ export default class Game {
     }
   }
 
-
   render() {
 
     this.setBallSize(this.paddle1.getScore(), this.paddle2.getScore());
     this.declareWinner(this.paddle1.getScore(), this.paddle2.getScore());
 
     if (this.paused === false) {
+
       this.gameElement.innerHTML = "";
       let svg = document.createElementNS(SVG_NS, "svg");
       svg.setAttributeNS(null, "width", this.width);
@@ -97,6 +99,12 @@ export default class Game {
       this.board.render(svg);
       this.paddle1.render(svg);
       this.paddle2.render(svg);
+      this.paddle1.speed = SPEED;
+      this.paddle2.speed = SPEED;
+
+
+
+
       this.ball.render(svg, this.paddle1, this.paddle2);
       if (this.numGamesPlayed >= 2) {
         this.ball2.render(svg, this.paddle1, this.paddle2);
@@ -113,6 +121,9 @@ export default class Game {
       this.score1.render(svg, this.paddle1.getScore());
       this.score2.render(svg, this.paddle2.getScore());
 
+    } else {
+      this.paddle1.speed = 0;
+      this.paddle2.speed = 0;
     }
 
   }

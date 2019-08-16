@@ -18,6 +18,7 @@ export default class Paddle {
     this.oldY = initialY;
     this.score = 0;
     this.speed = SPEED;
+
     document.addEventListener("keydown", event => {
       switch (event.key) {
         case keyUp:
@@ -42,6 +43,7 @@ export default class Paddle {
     this.score = 0;
     this.y = this.oldY;
   }
+
 
   moveUp() {
     this.y = Math.max(0, this.y - this.speed);
