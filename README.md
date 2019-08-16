@@ -2,6 +2,19 @@
 
 A starter project for a basic pong game using SVGs.
 
+![pong game screenshot](/images/pong-game-screenshot.png)
+
+## Technologies Used
+
+* HTML5
+* CSS3
+* JavaScript
+* GIT and GitHub
+
+## Personal learnings
+
+* Constructors and classes in JavaScript and deeper understanding of JS functions.
+
 ## Setup
 
 Ensure you have [Node.js](https://nodejs.org/en/) installed first.
