@@ -103,11 +103,11 @@ export default class Game {
       this.paddle2.speed = SPEED;
 
       this.ball.render(svg, this.paddle1, this.paddle2);
-      if (this.numGamesPlayed >= 3) {
+      if (this.numGamesPlayed >= 2) {
         this.ball2.render(svg, this.paddle1, this.paddle2);
 
       }
-      if (this.numGamesPlayed >= 5) {
+      if (this.numGamesPlayed >= 3) {
         this.ball3.render(svg, this.paddle1, this.paddle2);
         this.ball.ballSize(4);
         this.ball2.ballSize(4);
