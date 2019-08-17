@@ -57,7 +57,7 @@ export default class Game {
   }
 
   declareWinner(score1, score2) {
-    if (score1 === 1) {
+    if (score1 === 5) {
       this.playerName.innerText = 'Player 1 wins! Press space to restart.';
       this.numGamesPlayed++;
       this.paused = true;
@@ -65,7 +65,7 @@ export default class Game {
       this.paddle2.resetScore();
       this.ball.reset();
 
-    } else if (score2 === 1) {
+    } else if (score2 === 5) {
       this.playerName.innerText = 'Player 2 wins! Press space to restart.';
       this.numGamesPlayed++;
       this.paused = true;
@@ -102,15 +102,12 @@ export default class Game {
       this.paddle1.speed = SPEED;
       this.paddle2.speed = SPEED;
 
-
-
-
       this.ball.render(svg, this.paddle1, this.paddle2);
-      if (this.numGamesPlayed >= 2) {
+      if (this.numGamesPlayed >= 3) {
         this.ball2.render(svg, this.paddle1, this.paddle2);
 
       }
-      if (this.numGamesPlayed >= 3) {
+      if (this.numGamesPlayed >= 5) {
         this.ball3.render(svg, this.paddle1, this.paddle2);
         this.ball.ballSize(4);
         this.ball2.ballSize(4);

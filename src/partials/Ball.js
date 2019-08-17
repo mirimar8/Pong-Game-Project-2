@@ -50,7 +50,6 @@ export default class Ball {
 
   paddleCollision(player1, player2) {
     if (this.vx > 0) {
-      // check for hit with player2
       const p2 = player2.getCoordinates();
       if (
         this.x + this.radius >= p2.left &&
@@ -62,7 +61,6 @@ export default class Ball {
         this.ping.play();
       }
     } else {
-      // check for hit with player1
       const p1 = player1.getCoordinates();
       if (
         this.x - this.radius <= p1.right &&
